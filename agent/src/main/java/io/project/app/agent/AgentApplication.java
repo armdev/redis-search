@@ -1,5 +1,6 @@
 package io.project.app.agent;
 
+import io.project.app.domain.SearchData;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
@@ -35,8 +36,8 @@ public class AgentApplication {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate() {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
+    public RedisTemplate<String, SearchData> redisTemplate() {
+        RedisTemplate<String, SearchData> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory());
         return template;
     }

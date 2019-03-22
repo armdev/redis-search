@@ -41,8 +41,16 @@ public class SearchController {
         return ResponseEntity.status(HttpStatus.OK).body(find.get());
 
     }
-    
-    
+
+    @GetMapping("/search")
+    @Timed
+    @ResponseBody
+    public ResponseEntity<?> search(@RequestParam String id) {
+        SearchData search = searchService.search(id);
+        return ResponseEntity.status(HttpStatus.OK).body(search);
+
+    }
+
     @PostMapping
     @Timed
     @ResponseBody

@@ -24,13 +24,20 @@ public class SearchService {
     @Autowired
     private RedisTemplate<String, SearchData> redisTemplate;
 
-    public SearchData save(SearchData googleSearch) {
+    public SearchData save(SearchData googleSearch) {        
         return searchRepository.save(googleSearch);
-
     }
 
     public Optional<SearchData> find(String id) {
         return searchRepository.findById(id);
+
+    }
+
+    public SearchData search(String id) {
+        log.info("Search by id " + id);
+        SearchData get = redisTemplate.opsForValue().get(id);
+        log.info(get.toString());
+        return get;
 
     }
 

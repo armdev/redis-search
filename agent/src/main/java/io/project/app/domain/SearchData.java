@@ -25,7 +25,8 @@ import org.springframework.data.redis.core.RedisHash;
 @EqualsAndHashCode
 public class SearchData implements Serializable{
     
-    private String id;
+    private String id;   //unique id
+    private String key; //key for search
     private String title;
     private String content;
     
