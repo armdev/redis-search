@@ -23,7 +23,7 @@ import org.springframework.data.redis.core.RedisHash;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class GoogleSearch implements Serializable{
+public class DataSearch implements Serializable{
     
     private String id;
     private String title;

@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.project.app.services;
 
+import io.project.app.domain.DataSearch;
 import io.project.app.repositories.GoogleRepository;
+import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -16,12 +14,19 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Component
-public class GoogleService {
+@Slf4j
+public class SearchService {
     
     @Autowired
     private GoogleRepository googleRepository;
     
-    public void find(){
+    public DataSearch save(DataSearch googleSearch){
+        return googleRepository.save(googleSearch);
+        
+    }
+    
+    public Optional<DataSearch> find(String id){
+        return googleRepository.findById(id);
         
     }
     
