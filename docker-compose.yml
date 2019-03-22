@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+ 
+  redis:
+    image: 'redis:4-alpine'
+    command: redis-server --requirepass jroot
+    ports:
+      - '6379:6379' 
+    networks:
+      - rnet  
+ 
+  agent:
+    image: agent
+    build: ./agent
+    container_name: agent
+    restart: always
+    links:
+        - redis
+    depends_on:
+        - redis
+    ports:
+        - '8003:8003'
+    volumes:
+        - '/opt/agent/logs/:/opt/agent/logs'
+    networks:
+        - rnet
+networks:
+    rnet:
+      driver: bridge
