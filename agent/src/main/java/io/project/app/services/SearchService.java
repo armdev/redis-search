@@ -1,12 +1,13 @@
 package io.project.app.services;
 
-import io.project.app.domain.DataSearch;
-import io.project.app.repositories.GoogleRepository;
+import io.project.app.domain.SearchData;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import io.project.app.repositories.SearchRepository;
+import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  *
@@ -16,18 +17,21 @@ import org.springframework.stereotype.Service;
 @Component
 @Slf4j
 public class SearchService {
-    
+
     @Autowired
-    private GoogleRepository googleRepository;
-    
-    public DataSearch save(DataSearch googleSearch){
-        return googleRepository.save(googleSearch);
-        
+    private SearchRepository searchRepository;
+
+    @Autowired
+    private RedisTemplate<String, SearchData> redisTemplate;
+
+    public SearchData save(SearchData googleSearch) {
+        return searchRepository.save(googleSearch);
+
     }
-    
-    public Optional<DataSearch> find(String id){
-        return googleRepository.findById(id);
-        
+
+    public Optional<SearchData> find(String id) {
+        return searchRepository.findById(id);
+
     }
-    
+
 }

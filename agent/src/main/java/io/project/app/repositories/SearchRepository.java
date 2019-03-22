@@ -5,7 +5,7 @@
  */
 package io.project.app.repositories;
 
-import io.project.app.domain.DataSearch;
+import io.project.app.domain.SearchData;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -16,6 +16,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Component
-public interface GoogleRepository extends CrudRepository<DataSearch, String>{
+public interface SearchRepository extends CrudRepository<SearchData, String>{
     
 }

@@ -6,7 +6,7 @@
 package io.project.app.resource;
 
 import io.micrometer.core.annotation.Timed;
-import io.project.app.domain.DataSearch;
+import io.project.app.domain.SearchData;
 import io.project.app.services.SearchService;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -28,16 +28,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v2/search")
 @Slf4j
-public class GoogleController {
+public class SearchController {
 
     @Autowired
-    private SearchService googleService;
+    private SearchService searchService;
 
     @GetMapping
     @Timed
     @ResponseBody
     public ResponseEntity<?> find(@RequestParam String id) {
-        Optional<DataSearch> find = googleService.find(id);
+        Optional<SearchData> find = searchService.find(id);
         return ResponseEntity.status(HttpStatus.OK).body(find.get());
 
     }
@@ -46,8 +46,8 @@ public class GoogleController {
     @PostMapping
     @Timed
     @ResponseBody
-    public ResponseEntity<?> post(@RequestBody DataSearch googleSearch) {
-        googleService.save(googleSearch);
+    public ResponseEntity<?> post(@RequestBody SearchData googleSearch) {
+        SearchData save = searchService.save(googleSearch);
         return ResponseEntity.status(HttpStatus.OK).body("Data saved");
 
     }
